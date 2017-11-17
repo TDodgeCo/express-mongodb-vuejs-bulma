@@ -16,11 +16,18 @@ const store = new Vuex.Store({
         console.log(err)
       })
     },
-    createNewTask: function ({ commit }) {
-      axios.post('/api/tasks').then((response) => {
-        commit('createTask', { task: response.data })
-      }, (err) => {
-        console.log(err)
+    createNewTask: function ({ commit }, task) {
+      console.log(task)
+      axios({
+        method: 'post',
+        url: '/api/tasks',
+        data: {
+          title: task.title,
+          description: task.description
+        }
+      }).then((response) => {
+        console.log(response.data)
+        commit('createTask', {task: response.data})
       })
     }
   },

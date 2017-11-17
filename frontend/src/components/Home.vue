@@ -6,19 +6,20 @@
           Todo List
         </div>
         <task-list />
-        <add-task />
+        <create-task />
       </div>
     </div>
   </div>
 </template>
 <script>
 import TaskList from '../components/TaskList'
-import AddTask from '../components/AddTask'
+// import AddTask from '../components/AddTask'
+import CreateTask from '../components/CreateTask'
 export default {
   name: 'home',
   components: {
     TaskList,
-    AddTask
+    CreateTask
   },
   mounted: function () {
     this.$store.dispatch('loadTaskList')
