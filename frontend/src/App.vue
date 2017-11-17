@@ -5,14 +5,7 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      drawer: true
-    }),
-    props: {
-      source: String
-    }
-  }
+
 </script>
 
 <style>

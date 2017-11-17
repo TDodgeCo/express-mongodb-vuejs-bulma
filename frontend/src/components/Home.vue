@@ -1,32 +1,27 @@
-<template>
-  <div class="container-fluid">
-    <div class="row justify-content-start">
-      <div class="col-4">
-        Hello World
+<template lang="html">
+  <div id="home">
+    <div class="columns">
+      <div class="column is-half">
+        <div class="notification">
+          Todo List
+        </div>
+        <task-list />
+        <add-task />
       </div>
     </div>
   </div>
 </template>
-
 <script>
-  import axios from 'axios'
-  export default {
-    data () {
-      return {
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        tabs: ['Pending', 'Ongoing', 'Completed'],
-        tabsContent: {}
-      }
-    },
-    methods: {
-      getTodos: function () {
-        axios.get('/api/tasks').then(response => {
-          this.tabsContent = response.data
-        })
-      }
-    },
-    mounted () {
-      this.getTodos()
-    }
+import TaskList from '../components/TaskList'
+import AddTask from '../components/AddTask'
+export default {
+  name: 'home',
+  components: {
+    TaskList,
+    AddTask
+  },
+  mounted: function () {
+    this.$store.dispatch('loadTaskList')
   }
+}
 </script>
