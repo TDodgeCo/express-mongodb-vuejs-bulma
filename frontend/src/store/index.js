@@ -26,7 +26,6 @@ const store = new Vuex.Store({
           description: task.description
         }
       }).then((response) => {
-        console.log(response.data)
         commit('createTask', {task: response.data})
       })
     },
@@ -37,6 +36,35 @@ const store = new Vuex.Store({
         data: {
           title: task.title,
           description: task.description
+        }
+      }).then((response) => {
+        axios.get('/api/tasks')
+        .then((response) => {
+          commit('setTaskList', { list: response.data })
+        })
+      })
+    },
+    completeTask: function ({ commit }, task) {
+      axios({
+        method: 'put',
+        url: '/api/tasks/' + task.taskId,
+        data: {
+          status: 'completed'
+        }
+      }).then((response) => {
+        console.log(response)
+        axios.get('/api/tasks')
+        .then((response) => {
+          commit('setTaskList', { list: response.data })
+        })
+      })
+    },
+    deleteTask: function ({ commit }, task) {
+      axios({
+        method: 'put',
+        url: '/api/tasks/' + task.taskId,
+        data: {
+          status: 'deleted'
         }
       }).then((response) => {
         axios.get('/api/tasks')

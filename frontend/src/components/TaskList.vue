@@ -3,18 +3,19 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Todo</th>
+          <th class="column">Todo</th>
           <th>Description</th>
           <th>Completed</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in tasks">
+        <tr v-if="item.status[0] != 'deleted'" v-for="item in tasks">
           <td>{{item.title}}</td>
           <td>{{item.description}}</td>
-          <td>
-            <i v-if="item.completed" class="fa fa-check-square-o"></i>
-            <update-todo :taskId="item._id" v-else></update-todo>
+          <td><i v-if="item.status[0] == 'completed'" class="fa fa-check-square-o"></i></td>
+          <td>            
+            <update-todo :taskId="item._id" :title="item.title" :description="item.description"></update-todo>
           </td>
         </tr>
       </tbody>
@@ -43,5 +44,10 @@ export default {
 </script>
 
 <style lang="css">
-
+  table {
+    min-width: 100%;
+  }
+  th {
+    min-width: 25%;
+  }
 </style>

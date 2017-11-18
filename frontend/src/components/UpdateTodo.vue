@@ -1,41 +1,19 @@
 <template lang="html">
   <div>
-    <i :value="complete" @click="completeTask" class="fa fa-check"></i>
+    <i @click="completeTask" class="fa fa-check"></i>
     <i :value="update" @click="showModal = !showModal" class="fa fa-pencil-square-o"></i>
-    <i :value="remove" class="fa fa-trash-o"></i>
-    <div v-bind:class="{ 'is-active': showModal }" class="modal">
-      <div class="modal-background" @click="showModal = !showModal"></div>
-      <div class="modal-content">          
-        <div class="panel">
-            <form @submit.prevent="updateTask()">
-                <div class="field">
-                <div class="control">
-                    <label class="label">New Title {{taskId}}</label>
-                    <input v-model="newTitle" class="input" type="text" placeholder="Text input">
-                </div>
-                </div>
-                <div class="field">
-                <label class="label">New Description</label>
-                <div class="control">
-                    <textarea v-model="newDescription" class="textarea" placeholder="Textarea"></textarea>
-                </div>
-                </div>
-                <div class="field">
-                <div class="control">
-                    <button class="button is-link">Submit</button>
-                </div>
-                </div>
-            </form>
-        </div>          
-      </div>
-      <button class="modal-close is-large" aria-label="close" @click="showModal = !showModal"></button>
-    </div>
+    <i :value="remove" @click="deleteTask" class="fa fa-trash-o"></i>
+    <update-task @closeModal="showModal = !showModal" :showModal="showModal" :title="title" :description="description" :taskId="taskId" />
   </div>
 </template>
 <script>
+import UpdateTask from '../components/UpdateTask'
 export default {
   name: 'UpdateTodo',
-  props: ['taskId'],
+  components: {
+    UpdateTask
+  },
+  props: ['taskId', 'title', 'description'],
   data () {
     return {
       showModal: false,
@@ -48,7 +26,11 @@ export default {
   },
   methods: {
     completeTask (e) {
-      this.$store.dispatch('completeTask', e.target.value)
+      this.$store.dispatch({
+        type: 'completeTask',
+        taskId: this.taskId,
+        status: e.target.value
+      })
     },
     updateTask (e) {
       this.$store.dispatch({
@@ -60,17 +42,30 @@ export default {
       this.newTitle = ''
       this.newDescription = ''
       this.showModal = false
+    },
+    deleteTask (e) {
+      this.$store.dispatch({
+        type: 'deleteTask',
+        taskId: this.taskId
+      })
     }
   }
 }
 </script>
 <style scoped>
-    i {
-        margin-right: 10px;
-    }
-    .panel {
-        background-color: rgba(250, 250, 250, 1);
-        padding: 15px;
-    }
+/* i {
+  margin-right: 5px;
+} */
+.panel {
+  background-color: rgba(250, 250, 250, 1);
+  padding: 45px;
+  border-radius: 5px;
+}
+.new {
+  margin: 20px 0;
+}
+.current {
+  color: #fff;
+}
 </style>
 
