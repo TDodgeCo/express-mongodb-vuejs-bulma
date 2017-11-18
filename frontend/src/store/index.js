@@ -29,6 +29,21 @@ const store = new Vuex.Store({
         console.log(response.data)
         commit('createTask', {task: response.data})
       })
+    },
+    updateTask: function ({ commit }, task) {
+      axios({
+        method: 'put',
+        url: '/api/tasks/' + task.taskId,
+        data: {
+          title: task.title,
+          description: task.description
+        }
+      }).then((response) => {
+        axios.get('/api/tasks')
+        .then((response) => {
+          commit('setTaskList', { list: response.data })
+        })
+      })
     }
   },
   mutations: {

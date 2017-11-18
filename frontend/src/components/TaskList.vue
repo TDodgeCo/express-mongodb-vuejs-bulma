@@ -12,7 +12,10 @@
         <tr v-for="item in tasks">
           <td>{{item.title}}</td>
           <td>{{item.description}}</td>
-          <td><i v-if="item.completed" class="fa fa-check"></i></td>
+          <td>
+            <i v-if="item.completed" class="fa fa-check-square-o"></i>
+            <update-todo :taskId="item._id" v-else></update-todo>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -20,10 +23,19 @@
 </template>
 
 <script>
+import UpdateTodo from '../components/UpdateTodo'
 
 import { mapState } from 'vuex'
 export default {
   name: 'TaskList',
+  data () {
+    return {
+      taskId: ''
+    }
+  },
+  components: {
+    UpdateTodo
+  },
   computed: mapState([
     'tasks'
   ])

@@ -13,7 +13,6 @@
 </template>
 <script>
 import TaskList from '../components/TaskList'
-// import AddTask from '../components/AddTask'
 import CreateTask from '../components/CreateTask'
 export default {
   name: 'home',
