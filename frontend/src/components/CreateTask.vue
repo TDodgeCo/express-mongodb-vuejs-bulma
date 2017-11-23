@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="columns is-centered">
-    <div class="modal">
+    <div v-bind:class="{ 'is-active': showCreateModal }" class="modal">
       <div class="modal-background"></div>
       <div class="modal-content">
         <div class="column is-half">
@@ -23,7 +23,7 @@
           </form>
         </div>  
       </div>
-      <button class="modal-close is-large" aria-label="close"></button>
+      <button @click="closeModal" class="modal-close is-large" aria-label="close"></button>
     </div>    
   </div>
 </template>
@@ -31,9 +31,9 @@
 
 export default {
   name: 'CreateTask',
+  props: ['showCreateModal'],
   data () {
     return {
-      showModal: false,
       title: '',
       description: ''
     }
@@ -48,6 +48,10 @@ export default {
       })
       this.title = ''
       this.description = ''
+      this.closeModal()
+    },
+    closeModal () {
+      this.$emit('closeCreateModal')
     }
   }
 }

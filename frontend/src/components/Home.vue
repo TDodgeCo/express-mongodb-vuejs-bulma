@@ -8,12 +8,12 @@
               <p>Todo List</p>
             </div>
             <div class="column">
-              <a class="button btn is-info is-pulled-right">Create</a>
+              <a class="button btn is-info is-pulled-right" @click="showCreateModal = !showCreateModal">Create</a>
             </div>
           </div>      
         </div>
         <task-list />
-        <create-task :showModal="showModal"/>
+        <create-task @closeCreateModal="showCreateModal = false" :showCreateModal="showCreateModal"/>
       </div>
     </div>
   </div>
@@ -30,7 +30,8 @@ export default {
   },
   data () {
     return {
-      showModal: false
+      showModal: false,
+      showCreateModal: false
     }
   },
   mounted: function () {
