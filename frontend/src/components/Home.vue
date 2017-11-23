@@ -43,7 +43,8 @@ export default {
 <style scoped>
   .btn {
     border-radius: 50%;
-    height: 72px;    
+    height: 72px;
+    transition: .4s;
   }
   h1 {
     font-size: 200%;

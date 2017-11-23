@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class="{ 'is-active': showModal }" class="modal">
+  <div v-bind:class="{ 'is-active': showModal }" class="modal animated fadeIn">
   <div class="modal-background" @click="closeModal()"></div>
     <div class="modal-content">          
       <div class="panel">
