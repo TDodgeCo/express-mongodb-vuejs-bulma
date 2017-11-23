@@ -1,6 +1,5 @@
-# todo-express-mvc-api
-A RESTful todo API built with express and mongoose using the MVC architecture. I use this for testing and learning frontend technologies. 
-
+# express-mongodb-vuejs-bulma
+A RESTful todo API built with express and mongoose using the MVC architecture. The frontend was built using the `vue-cli` with the webpack template and bulma as the CSS framework. 
 ## Assumptions
 mongodb is installed locally
 
