@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="columns is-centered">
     <div v-bind:class="{ 'is-active': showCreateModal }" class="modal">
-      <div class="modal-background"></div>
+      <div @click="closeModal" class="modal-background"></div>
       <div class="modal-content">
         <div class="column is-half">
           <form @submit.prevent="createTask">
