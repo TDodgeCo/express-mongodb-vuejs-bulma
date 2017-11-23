@@ -9,7 +9,6 @@
             <div class="control">
               <p>
                 {{title}}
-                {{taskId}}
               </p>
             </div>
           </div>
