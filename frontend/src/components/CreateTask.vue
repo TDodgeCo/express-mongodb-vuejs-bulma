@@ -3,8 +3,9 @@
     <div v-bind:class="{ 'is-active': showCreateModal }" class="modal">
       <div @click="closeModal" class="modal-background"></div>
       <div class="modal-content">
-        <div class="column is-half">
-          <form @submit.prevent="createTask">
+        <div class="panel">
+          <h1>Create a New Todo</h1>
+          <form @submit.prevent="createTask">              
             <div class="field">
               <div class="control">
                 <input class="input" v-model="title" type="text" placeholder="Title">
@@ -21,7 +22,7 @@
               </div>
             </div>
           </form>
-        </div>  
+        </div>          
       </div>
       <button @click="closeModal" class="modal-close is-large" aria-label="close"></button>
     </div>    
@@ -56,3 +57,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+h1 {
+  margin-bottom: 25px;
+}
+.panel {
+  background-color: rgba(250, 250, 250, 1);
+  padding: 45px;
+  border-radius: 5px;
+}
+</style>
+

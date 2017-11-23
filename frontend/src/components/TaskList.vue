@@ -13,7 +13,7 @@
         <tr v-if="item.status[0] != 'deleted'" v-for="item in tasks">
           <td>{{item.title}}</td>
           <td>{{item.description}}</td>
-          <td><i v-if="item.status[0] == 'completed'" class="fa fa-check-square-o"></i></td>
+          <td><i v-if="item.status[0] == 'completed'" @click="taskId = item._id; undoComplete()" class="fa fa-check-square-o red"></i></td>
           <td>            
             <update-todo :taskId="item._id" :title="item.title" :description="item.description"></update-todo>
           </td>
@@ -37,6 +37,15 @@ export default {
   components: {
     UpdateTodo
   },
+  methods: {
+    undoComplete (e) {
+      this.$store.dispatch({
+        type: 'uncompleteTask',
+        taskId: this.taskId,
+        status: 'pending'
+      })
+    }
+  },
   computed: mapState([
     'tasks'
   ])
@@ -49,5 +58,10 @@ export default {
   }
   th {
     min-width: 25%;
+  }
+  i.red:hover {
+    color: #ea4133;
+    transition: .4s;
+    cursor: pointer;
   }
 </style>

@@ -59,6 +59,21 @@ const store = new Vuex.Store({
         })
       })
     },
+    uncompleteTask: function ({ commit }, task) {
+      axios({
+        method: 'put',
+        url: '/api/tasks/' + task.taskId,
+        data: {
+          status: task.status
+        }
+      }).then((response) => {
+        console.log(response)
+        axios.get('/api/tasks')
+        .then((response) => {
+          commit('setTaskList', { list: response.data })
+        })
+      })
+    },
     deleteTask: function ({ commit }, task) {
       axios({
         method: 'put',

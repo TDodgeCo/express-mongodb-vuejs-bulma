@@ -2,7 +2,7 @@
   <div>
     <i @click="completeTask" class="fa fa-check"></i>
     <i :value="update" @click="showModal = !showModal" class="fa fa-pencil-square-o"></i>
-    <i :value="remove" @click="deleteTask" class="fa fa-trash-o"></i>
+    <i :value="remove" @click="deleteTask" class="fa fa-trash-o red"></i>
     <update-task @closeModal="showModal = !showModal" :showModal="showModal" :title="title" :description="description" :taskId="taskId" />
   </div>
 </template>
@@ -53,9 +53,15 @@ export default {
 }
 </script>
 <style scoped>
-/* i {
-  margin-right: 5px;
-} */
+i:hover {
+  cursor: pointer;
+  color: #00D1B2;
+  transition: .4s;
+}
+i.red:hover {
+  color: #ea4133;
+  transition: .4s;
+}
 .panel {
   background-color: rgba(250, 250, 250, 1);
   padding: 45px;
