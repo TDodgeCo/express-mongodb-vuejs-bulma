@@ -1,11 +1,11 @@
 <template lang="html">
   <div id="home">
     <div class="columns">
-      <div class="column is-half is-offset-one-quarter">
+      <div class="column panel is-half is-offset-one-quarter">
         <div class="notification is-primary">
-          <div class="columns">
+          <div class="columns is-desktop is-vcentered">
             <div class="column">
-              <p>Todo List</p>
+              <h1>Todo List</h1>
             </div>
             <div class="column">
               <a class="button btn is-info is-pulled-right" @click="showCreateModal = !showCreateModal">Create</a>
@@ -44,6 +44,14 @@ export default {
   .btn {
     border-radius: 50%;
     height: 72px;    
+  }
+  h1 {
+    font-size: 200%;
+  }
+  .panel {
+    background-color: rgba(250, 250, 250, .66);
+    padding: 45px;
+    border-radius: 5px;
   }
 </style>
 
